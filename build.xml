@@ -1,0 +1,49 @@
+<project name="CityGenerator" default="run" basedir=".">
+	<description>
+		.
+	</description>
+	<property name="src" location="dk/borimino/citygenerator"/>
+	<property name="build" location="build"/>
+	<property name="lib" location="lib/*"/>
+	<property name="native" location="lib/native"/>
+
+	<target name="init">
+		<tstamp />
+		<mkdir dir="${build}" />
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${build}" >
+			<classpath>
+				<fileset dir="lib">
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+		<javac srcdir="." destdir="${build}" >
+			<classpath>
+				<fileset dir="lib">
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="run" depends="compile">
+		<java classname="test" fork="yes">
+			<classpath>
+				<pathelement path="${build}"/>
+				<!--<pathelement path="${lib}"/>-->
+				<fileset dir="lib" >
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+			<jvmarg value="-Djava.library.path=${native}" />
+		</java>
+	</target>
+
+	<target name="clear">
+		<delete dir="${build}" />
+	</target>
+</project>
+	
