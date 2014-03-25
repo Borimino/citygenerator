@@ -56,12 +56,25 @@ public class HouseGenerator
 		
 		for (int i = 0; i < number; i++) 
 		{
+			float scalar = 1f;
+			float heightS = 2f;
+			float widthS = 1f;
+			float depthS = 1f;
+
 			float height = (float) (Math.random()*0.5 + 0.5);
 			float width = (float) (Math.random()*0.5 + 0.5);
 			float depth = (float) (Math.random()*0.5 + 0.5) * -1;
 
-			FloatBuffer res2 = BufferUtils.createFloatBuffer(3*4*5);
-			int vecCount = 4*5;
+			//float height = 1f;
+			//float width = 1f;
+			//float depth = 1f;
+
+			height = height * scalar * heightS;
+			width = width * scalar * widthS;
+			depth = depth * scalar * depthS;
+
+			FloatBuffer res2 = BufferUtils.createFloatBuffer(3*4*6);
+			int vecCount = 4*6;
 			res2.put(new float[]
 			{
 				//Front
@@ -92,7 +105,13 @@ public class HouseGenerator
 				0, height, 0,
 				width, height, 0,
 				width, height, depth,
-				0, height, depth
+				0, height, depth,
+
+				//Buttom
+				0, 0, 0,
+				width, 0, 0,
+				width, 0, depth,
+				0, 0, depth
 			});
 			res2.rewind();
 			
