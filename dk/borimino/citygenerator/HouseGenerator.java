@@ -6,49 +6,13 @@ import java.util.*;
 
 public class HouseGenerator 
 {
-	public static FloatBuffer generateHouse()
-	{
-		float height = (float) Math.random();
-		float width = (float) Math.random();
-		float depth = (float) Math.random() * -1;
+	static public final float heightS = 2f;
+	static public final float widthS = 1f;
+	static public final float depthS = 1f;
 
-		FloatBuffer res = BufferUtils.createFloatBuffer(3*4*5);
-		res.put(new float[]
-		{
-			//Front
-			0, 0, 0,
-			width, 0, 0,
-			width, height, 0,
-			0, height, 0,
-
-			//Right
-			width, 0, 0,
-			width, 0, depth,
-			width, height, depth,
-			width, height, 0,
-
-			//Back
-			width, 0, depth,
-			0, 0, depth,
-			0, height, depth,
-			width, height, depth,
-
-			//Left
-			0, 0, depth,
-			0, 0, 0,
-			0, height, 0,
-			0, height, depth,
-
-			//Top
-			0, height, 0,
-			width, height, 0,
-			width, height, depth,
-			0, height, depth
-		});
-		res.rewind();
-		
-		return res;
-	}
+	static public final float tHeight = 2f+0.5f;
+	static public final float tWidth = 1f+0.5f;
+	static public final float tDepth = 1f+0.5f;
 
 	public static HashMap<FloatBuffer, Integer> generateHouses(int number)
 	{
@@ -57,9 +21,9 @@ public class HouseGenerator
 		for (int i = 0; i < number; i++) 
 		{
 			float scalar = 1f;
-			float heightS = 2f;
-			float widthS = 1f;
-			float depthS = 1f;
+			//float heightS = 2f;
+			//float widthS = 1f;
+			//float depthS = 1f;
 
 			float height = (float) (Math.random()*0.5 + 0.5);
 			float width = (float) (Math.random()*0.5 + 0.5);
